@@ -58,4 +58,11 @@ Server=localhost,1401;Initial Catalog=master;User ID=sa;Password=<YourStrong!Pas
 * [Visual Studio for Mac hands-on labs](https://github.com/Microsoft/vs4mac-labs)
 
 
+## Web API & Swagger
 
+Expose database functions via REST
+
+* [Add Web API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api-mac)
+* [Add Swagger](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio-mac)
+
+![Web app](Screenshots/swagger-sml.png)
