@@ -21,6 +21,8 @@
 
 ### bash
 
+#### Setting up Docker
+
 ```bash
 sudo docker pull microsoft/mssql-server-linux:2017-latest
 
@@ -31,13 +33,42 @@ sudo docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=<YourStrong!Passw0rd>' 
 sudo docker ps -a
 ```
 
+
 ### Connection String
 
-For both ASP.NET and SQL Operations Studio (warning: using `sa` is not recommended)
+For both ASP.NET and SQL Operations Studio (warning: using `sa` is not recommended):
 
 ```
 Server=localhost,1401;Initial Catalog=master;User ID=sa;Password=<YourStrong!Passw0rd>;Persist Security Info=False;
 ```
+
+Note the port matches what was configured in Docker 1401 on our local machine 
+maps to 1433 (the common SQL Server port) in the Docker container. You'll need to 
+enter the Connection String in the ASP.NET Core 
+
+#### Setting up the Entity Framework database
+
+Make sure you have opened the solution in Visual Studio for Mac and ensured
+the NuGet packages are all up-to-date, the Connection String is correct, and
+the solution builds successfully.
+
+Run this command in the .NET Core project directory to configure the database.
+
+```bash
+dotnet ef database update
+```
+
+You'll probably need to close the solution in Visual Studio for Mac, or
+there might be file access errors on the assemblies in the project.
+
+Once the database has been configured, you can run the web site from
+Visual Studio for Mac.
+
+#### SQL Operations Studio
+
+You can use the **server:localhost,1401** and login details to access 
+the SQL Server instance to interact with the database via T-SQL.
+
 
 ## Tools
 
@@ -60,7 +91,7 @@ Server=localhost,1401;Initial Catalog=master;User ID=sa;Password=<YourStrong!Pas
 
 ## Web API & Swagger
 
-Expose database functions via REST
+The code has been updated to expose database functions via REST:
 
 * [Add Web API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api-mac)
 * [Add Swagger](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio-mac)
